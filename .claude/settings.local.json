@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:akainooagency.com)",
+      "WebFetch(domain:www.accenture.com)",
+      "Bash(python -m http.server:*)",
+      "Bash(dir:*)",
+      "Bash(curl:*)",
+      "Bash(timeout 2:*)",
+      "Bash(powershell -Command \"Invoke-WebRequest -Uri ''http://127.0.0.1:8000'' -UseBasicParsing | Select-Object -ExpandProperty StatusCode\")",
+      "Bash(powershell -Command \"Invoke-WebRequest -Uri ''http://127.0.0.1:8080'' -UseBasicParsing | Select-Object -ExpandProperty StatusCode\")",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
