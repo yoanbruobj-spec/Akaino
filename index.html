@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akainoo — AI Automation Agency</title>
+    <title>Akainoo — AI Agency</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -6244,17 +6244,50 @@
 
         /* === MOBILE LARGE (768px) === */
         @media (max-width: 768px) {
+            /* Optimisations de performance mobile */
+            * {
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            /* Smooth scrolling natif */
+            html {
+                scroll-behavior: smooth;
+            }
+
             /* Reset du curseur pour tactile */
             body {
                 cursor: auto !important;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
             }
+
             .cursor, .cursor-dot, .cursor-text, .particle-trail, .spotlight, .spotlight-glow {
                 display: none !important;
+            }
+
+            /* Transitions plus fluides sur mobile */
+            .service-card,
+            .why-akainoo-card,
+            .stat-card,
+            .about-feature,
+            .faq-item,
+            .testimonial-card-carousel {
+                transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+                will-change: auto;
+            }
+
+            /* Désactiver les effets hover complexes sur tactile */
+            .service-card:hover,
+            .why-akainoo-card:hover,
+            .stat-card:hover {
+                transform: none;
             }
 
             /* Header Mobile */
             header {
                 padding: 16px 20px;
+                -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(10px);
             }
             .header-logo img {
                 height: 32px;
@@ -6759,10 +6792,18 @@
             /* Cookie Banner Mobile */
             .cookie-banner {
                 padding: 20px;
-                bottom: 0;
+                padding-bottom: 30px;
+                bottom: 0 !important;
                 left: 0;
                 right: 0;
                 border-radius: 20px 20px 0 0;
+                z-index: 99999 !important;
+                max-height: 90vh;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .cookie-banner.show {
+                bottom: 0 !important;
             }
             .cookie-content {
                 flex-direction: column;
@@ -6772,21 +6813,33 @@
             .cookie-icon {
                 display: none;
             }
-            .cookie-text h3 {
+            .cookie-text h4 {
                 font-size: 16px;
+                justify-content: center;
             }
             .cookie-text p {
                 font-size: 13px;
+                line-height: 1.5;
             }
             .cookie-actions {
                 flex-direction: column;
                 width: 100%;
-                gap: 10px;
+                gap: 12px;
+                margin-top: 10px;
             }
             .cookie-btn {
                 width: 100%;
+                display: flex;
+                align-items: center;
                 justify-content: center;
-                padding: 14px 20px;
+                padding: 16px 20px;
+                min-height: 52px;
+                font-size: 14px;
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
+            }
+            .cookie-btn-primary {
+                order: -1;
             }
 
             /* Newsletter Section Mobile */
@@ -7130,9 +7183,11 @@
             /* Cookie Banner ajustements */
             .cookie-banner {
                 padding: 16px;
+                padding-bottom: 25px;
             }
             .cookie-btn {
-                padding: 12px 16px;
+                padding: 14px 16px;
+                min-height: 50px;
                 font-size: 13px;
             }
 
@@ -7323,7 +7378,10 @@
                     padding-bottom: max(30px, env(safe-area-inset-bottom));
                 }
                 .cookie-banner {
-                    padding-bottom: max(20px, env(safe-area-inset-bottom));
+                    padding-bottom: max(30px, env(safe-area-inset-bottom));
+                }
+                .cookie-btn {
+                    min-height: 52px;
                 }
                 .mobile-menu {
                     padding-bottom: max(50px, env(safe-area-inset-bottom));
@@ -7423,7 +7481,7 @@
             </div>
 
             <!-- Tagline -->
-            <div class="preloader-tagline">AI Automation Agency</div>
+            <div class="preloader-tagline">AI Agency</div>
 
             <!-- Progress Bar -->
             <div class="preloader-progress">
@@ -7558,7 +7616,7 @@
         <div class="hero-content">
             <div class="hero-eyebrow">
                 <div class="hero-eyebrow-line"></div>
-                <span>AI Automation Agency</span>
+                <span>AI Agency</span>
             </div>
 
             <h1 class="hero-title">
@@ -8032,7 +8090,7 @@
                     </svg>
                 </div>
                 <h3>Custom AI Solutions</h3>
-                <p>Building custom AI tools including intelligent chatbots, automation systems, and dashboards tailored to your unique requirements.</p>
+                <p>We design and build AI systems that match your specific needs: predictive analytics, automation, and intelligent decision tools that improve speed, accuracy, and workflow efficiency. Complete solutions from design to deployment across education, healthcare, nonprofits, and business operations.</p>
                 <a href="#contact" class="service-link">
                     Learn More
                     <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -8046,8 +8104,23 @@
                         <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                     </svg>
                 </div>
-                <h3>AI Team Training</h3>
-                <p>Customized training programs for compliant AI adoption and long-term success across all your teams and departments.</p>
+                <h3>Corporate Training</h3>
+                <p>We provide training programs that help your team build real AI skills. Executive sessions on strategic value, hands-on workshops for practical experience, and responsible AI training to ensure secure and sustainable use. Tailored to prepare your workforce to work confidently with AI.</p>
+                <a href="#contact" class="service-link">
+                    Learn More
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-number">05</div>
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 7v10c0 2 1 3 3 3h10c2 0 3-1 3-3V7c0-2-1-3-3-3H7c-2 0-3 1-3 3zm0 5h16M9 4v3m6-3v3"/>
+                    </svg>
+                </div>
+                <h3>Data Services</h3>
+                <p>High quality data drives effective AI. We help you prepare, clean, label, and organize your data for real use. Build structured data pipelines, manage sensitive information across healthcare, education, and finance with a focus on data ethics, privacy, security, and transparency.</p>
                 <a href="#contact" class="service-link">
                     Learn More
                     <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
