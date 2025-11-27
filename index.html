@@ -6252,6 +6252,7 @@
             /* Smooth scrolling natif */
             html {
                 scroll-behavior: smooth;
+                -webkit-overflow-scrolling: touch;
             }
 
             /* Reset du curseur pour tactile */
@@ -6259,35 +6260,54 @@
                 cursor: auto !important;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
+                overflow-x: hidden;
             }
 
-            .cursor, .cursor-dot, .cursor-text, .particle-trail, .spotlight, .spotlight-glow {
+            /* Masquer tous les effets visuels lourds */
+            .cursor, .cursor-dot, .cursor-text, .particle-trail, .spotlight, .spotlight-glow,
+            .aurora-container, .floating-elements, .morph-shape,
+            .preloader-orb, .preloader-orb-1, .preloader-orb-2, .preloader-orb-3,
+            #hero-canvas {
                 display: none !important;
             }
 
-            /* Transitions plus fluides sur mobile */
+            /* Désactiver les animations complexes */
+            .service-card::before,
+            .service-card::after,
+            .why-akainoo-card::before,
+            .stat-card::before,
+            .about-feature::before {
+                display: none;
+            }
+
+            /* Transitions simplifiées sur mobile */
             .service-card,
             .why-akainoo-card,
             .stat-card,
             .about-feature,
             .faq-item,
-            .testimonial-card-carousel {
-                transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+            .testimonial-card-carousel,
+            .portfolio-item {
+                transition: none;
+                transform: none !important;
                 will-change: auto;
             }
 
-            /* Désactiver les effets hover complexes sur tactile */
+            /* Désactiver les effets hover sur tactile */
             .service-card:hover,
             .why-akainoo-card:hover,
-            .stat-card:hover {
-                transform: none;
+            .stat-card:hover,
+            .about-feature:hover,
+            .portfolio-item:hover {
+                transform: none !important;
+                box-shadow: none;
             }
 
             /* Header Mobile */
             header {
                 padding: 16px 20px;
-                -webkit-backdrop-filter: blur(10px);
                 backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
             }
             .header-logo img {
                 height: 32px;
@@ -6789,57 +6809,9 @@
                 height: 44px;
             }
 
-            /* Cookie Banner Mobile */
+            /* Cookie Banner - Masqué sur mobile */
             .cookie-banner {
-                padding: 20px;
-                padding-bottom: 30px;
-                bottom: 0 !important;
-                left: 0;
-                right: 0;
-                border-radius: 20px 20px 0 0;
-                z-index: 99999 !important;
-                max-height: 90vh;
-                overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
-            }
-            .cookie-banner.show {
-                bottom: 0 !important;
-            }
-            .cookie-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 15px;
-            }
-            .cookie-icon {
-                display: none;
-            }
-            .cookie-text h4 {
-                font-size: 16px;
-                justify-content: center;
-            }
-            .cookie-text p {
-                font-size: 13px;
-                line-height: 1.5;
-            }
-            .cookie-actions {
-                flex-direction: column;
-                width: 100%;
-                gap: 12px;
-                margin-top: 10px;
-            }
-            .cookie-btn {
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: 16px 20px;
-                min-height: 52px;
-                font-size: 14px;
-                touch-action: manipulation;
-                -webkit-tap-highlight-color: transparent;
-            }
-            .cookie-btn-primary {
-                order: -1;
+                display: none !important;
             }
 
             /* Newsletter Section Mobile */
@@ -7180,16 +7152,6 @@
                 font-size: 14px;
             }
 
-            /* Cookie Banner ajustements */
-            .cookie-banner {
-                padding: 16px;
-                padding-bottom: 25px;
-            }
-            .cookie-btn {
-                padding: 14px 16px;
-                min-height: 50px;
-                font-size: 13px;
-            }
 
             /* Newsletter ajustements */
             .newsletter-section {
@@ -7353,9 +7315,6 @@
                 min-width: 48px;
                 min-height: 48px;
             }
-            .cookie-btn {
-                min-height: 48px;
-            }
             .form-submit {
                 min-height: 52px;
             }
@@ -7376,12 +7335,6 @@
                 }
                 .footer {
                     padding-bottom: max(30px, env(safe-area-inset-bottom));
-                }
-                .cookie-banner {
-                    padding-bottom: max(30px, env(safe-area-inset-bottom));
-                }
-                .cookie-btn {
-                    min-height: 52px;
                 }
                 .mobile-menu {
                     padding-bottom: max(50px, env(safe-area-inset-bottom));
