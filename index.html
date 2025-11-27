@@ -10251,17 +10251,34 @@
             }, 2000);
         }
 
-        cookieAccept?.addEventListener('click', () => {
+        // Function to handle cookie acceptance
+        function acceptCookies(e) {
+            e.preventDefault();
+            e.stopPropagation();
             localStorage.setItem('cookies-consent', 'accepted');
             cookieBanner.classList.remove('show');
             if (soundEnabled) playSound('success');
-        });
+        }
 
-        cookieDecline?.addEventListener('click', () => {
+        // Function to handle cookie decline
+        function declineCookies(e) {
+            e.preventDefault();
+            e.stopPropagation();
             localStorage.setItem('cookies-consent', 'declined');
             cookieBanner.classList.remove('show');
             if (soundEnabled) playSound('click');
-        });
+        }
+
+        // Add event listeners for both click and touch
+        if (cookieAccept) {
+            cookieAccept.addEventListener('click', acceptCookies);
+            cookieAccept.addEventListener('touchend', acceptCookies, { passive: false });
+        }
+
+        if (cookieDecline) {
+            cookieDecline.addEventListener('click', declineCookies);
+            cookieDecline.addEventListener('touchend', declineCookies, { passive: false });
+        }
 
         // ==================== NEWSLETTER FORM ====================
         const newsletterForm = document.getElementById('newsletter-form');
